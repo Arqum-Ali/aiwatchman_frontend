@@ -12,7 +12,7 @@ import Camera from "./pages/camera";
 import "./App.css";
 import ProtectedRoute from "./components/ProtectedRoute";
 
-// Navbar component
+
 function Navbar() {
   return (
     <nav className="navbar">
