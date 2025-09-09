@@ -1,0 +1,32 @@
+.gallery-wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: center; /* Center images in the middle */
+  padding: 20px;
+}
+
+.gallery-card {
+  width: 200px;
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Center the image inside card */
+  background-color: #f8f8f8;
+  border-radius: 10px;
+  padding: 10px;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+
+.gallery-image {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+.gallery-name {
+  margin-top: 10px;
+  font-weight: bold;
+  text-align: center;
+  color: #333;
+}
