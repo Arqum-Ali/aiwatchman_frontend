@@ -10,6 +10,7 @@ import UnknownFaces from "./pages/UnknowFaces";
 import Camera from "./pages/camera";
 
 import "./App.css";
+import ProtectedRoute from "./components/ProtectedRoute";
 
 // Navbar component
 function Navbar() {
@@ -51,7 +52,7 @@ function Navbar() {
 // Wrapper component to conditionally show navbar
 function Layout({ children }) {
   const location = useLocation();
-  const hideNavbar = ["/signup", "/Login"].includes(location.pathname);
+  const hideNavbar = ["/signup", "/login"].includes(location.pathname);
 
   return (
     <>
@@ -66,15 +67,56 @@ function App() {
     <BrowserRouter>
       <Layout>
         <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/users" element={<Users />} />
+          <Route
+            path="/"
+            element={
+              <ProtectedRoute>
+                <Home />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/users"
+            element={
+              <ProtectedRoute>
+                <Users />
+              </ProtectedRoute>
+            }
+          />
           <Route path="/signup" element={<Signup />} />
           <Route path="/login" element={<Login />} />
-          <Route path="/upload_image" element={<UploadReferences />} />
-          <Route path="/known-faces" element={<KnownFaces />} />
-          <Route path="/UnknownFaces" element={<UnknownFaces />} />
-          <Route path="/Camera" element={<Camera />} />
-
+          <Route
+            path="/upload_image"
+            element={
+              <ProtectedRoute>
+                <UploadReferences />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/known-faces"
+            element={
+              <ProtectedRoute>
+                <KnownFaces />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/UnknownFaces"
+            element={
+              <ProtectedRoute>
+                <UnknownFaces />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/Camera"
+            element={
+              <ProtectedRoute>
+                <Camera />
+              </ProtectedRoute>
+            }
+          />
         </Routes>
       </Layout>
     </BrowserRouter>

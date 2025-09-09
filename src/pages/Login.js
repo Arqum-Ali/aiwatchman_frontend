@@ -1,12 +1,13 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom"; // ✅ import navigate
-import "./Signup.css"; // reuse the same CSS for consistent styling
+import { useNavigate } from "react-router-dom";
+import { supabase } from "../lib/supabase";
+import "./Signup.css";
 
 export default function Login() {
   const [formData, setFormData] = useState({ email: "", password: "" });
-  const [message, setMessage] = useState(""); // For login messages
-  const [showFade, setShowFade] = useState(false); // For fade effect
-  const navigate = useNavigate(); // ✅ initialize navigate
+  const [message, setMessage] = useState("");
+  const [showFade, setShowFade] = useState(false);
+  const navigate = useNavigate();
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -14,48 +15,22 @@ export default function Login() {
     setShowFade(false);
   };
 
-  const handleLogin = async (e) => {
-    e.preventDefault();
+const handleLogin = async (e) => {
+  e.preventDefault();
 
-    if (!formData.email || !formData.password) {
-      setMessage("❌ Please fill in all fields");
-      setShowFade(true);
-      setTimeout(() => setShowFade(false), 3000);
-      return;
-    }
+  const { data, error } = await supabase.auth.signInWithPassword({
+    email: formData.email,
+    password: formData.password,
+  });
 
-    try {
-      const response = await fetch("http://127.0.0.1:5000/login/", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          email: formData.email,
-          password: formData.password,
-        }),
-      });
-
-      const data = await response.json();
-
-      if (response.ok) {
-        setMessage("✅ Login successful!");
-        setShowFade(true);
-        setFormData({ email: "", password: "" });
-
-        setTimeout(() => {
-          setShowFade(false);
-          navigate("/"); // ✅ redirect to Home
-        }, 1000); // short delay to show success message
-      } else {
-        setMessage("❌ " + (data.error || "Login failed"));
-        setShowFade(true);
-        setTimeout(() => setShowFade(false), 3000);
-      }
-    } catch (error) {
-      setMessage("❌ Error: " + error.message);
-      setShowFade(true);
-      setTimeout(() => setShowFade(false), 3000);
-    }
-  };
+  if (error) {
+    setMessage("❌ " + error.message);
+  } else {
+    localStorage.setItem("sb-access-token", data.session.access_token);
+    setMessage("✅ Login successful!");
+    navigate("/");
+  }
+};
 
   return (
     <div className="signup-wrapper">
@@ -70,7 +45,6 @@ export default function Login() {
             onChange={handleChange}
             required
           />
-
           <input
             type="password"
             name="password"
@@ -79,17 +53,21 @@ export default function Login() {
             onChange={handleChange}
             required
           />
-
           <button type="submit" className="signup-btn">
             Login
           </button>
         </form>
-
         {message && (
           <p className={`signup-message ${showFade ? "fade-in" : "fade-out"}`}>
             {message}
           </p>
         )}
+        <p className="mt-2 text-sm">
+          Don't have an account?{" "}
+          <a href="/signup" className="text-blue-500 underline">
+            Signup
+          </a>
+        </p>
       </div>
     </div>
   );
