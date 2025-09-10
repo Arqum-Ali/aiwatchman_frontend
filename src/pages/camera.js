@@ -115,11 +115,11 @@ export default function CameraCapture() {
     <div style={{ textAlign: "center", marginTop: "50px" }}>
       <h2>Camera Capture</h2>
 
-      <div>
-        <button onClick={startCamera} style={{ marginRight: "10px" }}>
+      <div style={{marginTop:30}}>
+        <button onClick={startCamera} className="upload-btn" style={{marginRight : 20}}>
           Start
         </button>
-        <button onClick={stopCamera}>Stop</button>
+        <button onClick={stopCamera} className="upload-btn">Stop</button>
       </div>
 
       <div style={{ marginTop: "20px" }}>

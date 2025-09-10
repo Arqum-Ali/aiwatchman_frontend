@@ -1,0 +1,69 @@
+.faces-wrapper {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 20px;
+    padding: 20px;
+    justify-items: center;
+}
+
+.face-card {
+    background: #fff;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    width: 100%;
+    max-width: 250px;
+    text-align: center;
+}
+
+.face-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.12);
+}
+
+.face-img {
+    width: 100%;
+    height: 220px;
+    object-fit: cover;
+}
+
+.face-info {
+    padding: 12px 10px;
+}
+
+.face-name {
+    font-size: 16px;
+    font-weight: 600;
+    margin-bottom: 6px;
+    color: #222;
+}
+
+.map-link {
+    font-size: 13px;
+    color: #007bff;
+    text-decoration: none;
+    transition: color 0.2s;
+}
+
+.map-link:hover {
+    color: #0056b3;
+    text-decoration: underline;
+}
+
+.no-location {
+    font-size: 12px;
+    color: #777;
+}
+
+.status-msg {
+    text-align: center;
+    font-size: 16px;
+    margin-top: 40px;
+    color: #444;
+}
+
+.status-msg.error {
+    color: red;
+    font-weight: 500;
+}

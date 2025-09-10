@@ -1,5 +1,5 @@
 /* Navbar styling */
-.navbar {
+/* .navbar {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -31,7 +31,6 @@
   transform: scale(1.1);
 }
 
-/* Home header styling */
 .home-header {
   text-align: center;
   margin-top: 100px;
@@ -46,4 +45,210 @@
   font-size: 20px;
   color: #555;
   margin-top: 10px;
+} */
+/* Navbar wrapper */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 14px 40px;
+  background: rgba(24, 40, 72, 0.9);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+/* Logo */
+.navbar .logo {
+  font-size: 26px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  color: #ffcc00;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+
+.navbar .logo:hover {
+  transform: scale(1.1);
+}
+
+/* Nav links */
+.nav-links {
+  list-style: none;
+  display: flex;
+  gap: 28px;
+  margin: 0;
+  padding: 0;
+}
+
+.nav-links li a {
+  position: relative;
+  color: #f5f5f5;
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 16px;
+  letter-spacing: 0.5px;
+  transition: color 0.3s ease;
+  padding: 6px 0;
+}
+
+.nav-links li a:hover {
+  color: #ffcc00;
+}
+
+/* Active link underline animation */
+.nav-links li a::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -4px;
+  width: 0%;
+  height: 2px;
+  background: #ffcc00;
+  transition: width 0.3s ease;
+}
+
+.nav-links li a:hover::after,
+.nav-links li a.active::after {
+  width: 100%;
+}
+
+/* Page layout spacing */
+.page-wrapper {
+  padding: 40px;
+  animation: fadeIn 0.5s ease-in-out;
+}
+
+/* Smooth fade-in for pages */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(15px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.home-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 60px 20px;
+  background: #f9f9fb;
+  min-height: 100vh;
+  font-family: 'Red Hat Display', sans-serif;
+}
+
+.upload-card {
+  background: white;
+  padding: 30px;
+  border-radius: 16px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+  max-width: 500px;
+  width: 100%;
+  text-align: center;
+  animation: fadeIn 0.5s ease-in-out;
+}
+
+.upload-title {
+  font-size: 24px;
+  font-weight: 600;
+  color: #182848;
+  margin-bottom: 20px;
+}
+
+.upload-form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.file-input {
+  padding: 10px;
+  border: 2px dashed #4b6cb7;
+  border-radius: 10px;
+  cursor: pointer;
+  background: #f5f7ff;
+  transition: border-color 0.3s ease, background 0.3s ease;
+}
+
+.file-input:hover {
+  border-color: #182848;
+  background: #eef2ff;
+}
+
+.upload-btn {
+  background: linear-gradient(90deg, #4b6cb7, #182848);
+  color: white;
+  font-size: 16px;
+  font-weight: 500;
+  border: none;
+  padding: 12px;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: transform 0.2s ease, background 0.3s ease;
+}
+
+.upload-btn:hover {
+  transform: scale(1.05);
+  background: linear-gradient(90deg, #182848, #4b6cb7);
+}
+
+.preview-grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 15px;
+  margin-top: 20px;
+}
+
+.preview-img {
+  width: 140px;
+  height: 140px;
+  object-fit: cover;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  transition: transform 0.3s ease;
+}
+
+.preview-img:hover {
+  transform: scale(1.08);
+}
+
+.upload-message {
+  margin-top: 15px;
+  font-weight: 500;
+  color: #28a745;
+}
+
+/* Hide default ugly file input */
+.hidden-file-input {
+  display: none;
+}
+
+/* Custom file input label */
+.custom-file-label {
+  display: block;
+  padding: 12px;
+  border: 2px dashed #4b6cb7;
+  border-radius: 10px;
+  background: #f5f7ff;
+  text-align: center;
+  color: #555;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.custom-file-label:hover {
+  border-color: #182848;
+  background: #eef2ff;
+  color: #182848;
+  transform: scale(1.03);
 }

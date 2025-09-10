@@ -6,11 +6,16 @@ export default function UploadReferences() {
   const [previewURLs, setPreviewURLs] = useState([]);
   const [status, setStatus] = useState("idle"); // idle | uploading | success | error
   const [message, setMessage] = useState("");
+  const [fileName, setFileName] = useState("");
 
   // Handle file selection
   const handleFileChange = (e) => {
     const selectedFiles = Array.from(e.target.files);
     setFiles(selectedFiles);
+    setFileName(
+      selectedFiles.length > 0 ? `${files.length} file(s) selected` : ""
+    );
+
 
     // Preview URLs
     const urls = selectedFiles.map((file) => URL.createObjectURL(file));
@@ -51,35 +56,66 @@ export default function UploadReferences() {
   };
 
   return (
-    <div style={{ textAlign: "center", marginTop: "50px" }}>
-      <h2>Upload Reference Images</h2>
-      <form onSubmit={handleSubmit}>
-        <input
-          ref={inputRef}
-          type="file"
-          accept="image/*"
-          multiple
-          onChange={handleFileChange}
-        />
-        <br />
-        <br />
-        <button type="submit">Upload</button>
-      </form>
-
-      {/* Preview selected images */}
-      <div style={{ marginTop: "20px" }}>
-        {previewURLs.map((url, index) => (
-          <img
-            key={index}
-            src={url}
-            alt="preview"
-            style={{ width: "150px", margin: "10px", borderRadius: "8px" }}
+    <div className="home-wrapper">
+      <div className="upload-card">
+        <h2 className="upload-title">Upload Reference Image</h2>
+        <form onSubmit={handleSubmit} className="upload-form">
+          <label htmlFor="file-upload" className="custom-file-label">
+            {fileName || "📂 Click to select images"}
+          </label>
+          <input
+            id="file-upload"
+            ref={inputRef}
+            type="file"
+            accept="image/*"
+            multiple
+            onChange={handleFileChange}
+            className="hidden-file-input"
           />
-        ))}
-      </div>
+          <button type="submit" className="upload-btn">
+            Upload
+          </button>
+        </form>
 
-      {status === "uploading" && <p>Uploading...</p>}
-      {message && <p>{message}</p>}
+        {/* Preview */}
+        <div className="preview-grid">
+          {previewURLs.map((url, index) => (
+            <img key={index} src={url} alt="preview" className="preview-img" />
+          ))}
+        </div>
+
+        {message && <p className="upload-message">{message}</p>}
+      </div>
     </div>
+    // <div style={{ textAlign: "center", marginTop: "50px" }}>
+    //   <h2>Upload Reference Images</h2>
+    //   <form onSubmit={handleSubmit}>
+    //     <input
+    //       ref={inputRef}
+    //       type="file"
+    //       accept="image/*"
+    //       multiple
+    //       onChange={handleFileChange}
+    //     />
+    //     <br />
+    //     <br />
+    //     <button type="submit">Upload</button>
+    //   </form>
+
+    //   {/* Preview selected images */}
+    //   <div style={{ marginTop: "20px" }}>
+    //     {previewURLs.map((url, index) => (
+    //       <img
+    //         key={index}
+    //         src={url}
+    //         alt="preview"
+    //         style={{ width: "150px", margin: "10px", borderRadius: "8px" }}
+    //       />
+    //     ))}
+    //   </div>
+
+    //   {status === "uploading" && <p>Uploading...</p>}
+    //   {message && <p>{message}</p>}
+    // </div>
   );
 }
