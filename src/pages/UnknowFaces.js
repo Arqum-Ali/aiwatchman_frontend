@@ -10,7 +10,9 @@ export default function UnknownFaces() {
   useEffect(() => {
     const fetchFaces = async () => {
       try {
-        const response = await fetch("http://127.0.0.1:5000/unknown-faces");
+        const response = await fetch(
+          "https://aiwatchman-3ce267379802.herokuapp.com/unknown-faces"
+        );
         const data = await response.json();
 
         if (!response.ok) {

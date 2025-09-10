@@ -1,0 +1,254 @@
+/* General Page Styling - Matches Upload Page */
+body {
+    margin: 0;
+    font-family: 'Red Hat Display', sans-serif;
+    background: #f9f9fb;
+    color: #182848;
+    min-height: 100vh;
+}
+
+.profile-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 60px 20px;
+    width: 100%;
+    max-width: 650px;
+    margin: 0 auto;
+}
+
+/* Profile Header and Logout Button */
+.profile-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    margin-bottom: 25px;
+}
+
+.profile-header h1 {
+    font-size: 28px;
+    font-weight: 700;
+    color: #182848;
+}
+
+.logout-button {
+    background: none;
+    color: #4b6cb7;
+    border: 2px solid #4b6cb7;
+    font-size: 14px;
+    font-weight: 500;
+    padding: 8px 15px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.logout-button:hover {
+    background: #4b6cb7;
+    color: white;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(75, 108, 183, 0.3);
+}
+
+/* Profile Card */
+.profile-card {
+    background: white;
+    padding: 30px;
+    border-radius: 16px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 20px;
+}
+
+.avatar-section {
+    position: relative;
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    overflow: hidden;
+    border: 4px solid #eef2ff;
+    box-shadow: 0 0 0 4px #4b6cb7;
+}
+
+.user-avatar {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.details-section h2 {
+    font-size: 22px;
+    font-weight: 600;
+    color: #182848;
+    margin-bottom: 10px;
+}
+
+.details-section p {
+    font-size: 16px;
+    margin: 5px 0;
+    color: #555;
+}
+
+.details-section strong {
+    font-weight: 600;
+    color: #182848;
+}
+
+.edit-button {
+    background: linear-gradient(90deg, #4b6cb7, #182848);
+    color: white;
+    font-size: 16px;
+    font-weight: 500;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 10px;
+    cursor: pointer;
+    margin-top: 20px;
+    transition: transform 0.2s ease, box-shadow 0.3s ease;
+}
+
+.edit-button:hover {
+    transform: scale(1.05);
+    box-shadow: 0 6px 15px rgba(75, 108, 183, 0.5);
+}
+
+/* --- Modal Styling for Editing Profile --- */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.6);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.modal {
+    background: white;
+    padding: 30px;
+    border-radius: 16px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    width: 90%;
+    max-width: 450px;
+    animation: slideIn 0.3s ease-out;
+}
+
+.modal h2 {
+    color: #182848;
+    border-bottom: 2px solid #eef2ff;
+    padding-bottom: 10px;
+    margin-bottom: 20px;
+    font-size: 20px;
+}
+
+.form-group {
+    margin-bottom: 15px;
+    text-align: left;
+}
+
+.form-group label {
+    display: block;
+    font-weight: 600;
+    margin-bottom: 5px;
+    color: #182848;
+}
+
+.form-group input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    box-sizing: border-box;
+    transition: border-color 0.3s ease;
+}
+
+.form-group input:focus {
+    border-color: #4b6cb7;
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(75, 108, 183, 0.2);
+}
+
+.form-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+.form-actions button {
+    padding: 10px 15px;
+    border: none;
+    border-radius: 8px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.form-actions button[type="submit"] {
+    background: linear-gradient(90deg, #4b6cb7, #182848);
+    color: white;
+}
+
+.form-actions button[type="submit"]:hover:not(:disabled) {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 10px rgba(75, 108, 183, 0.4);
+}
+
+.form-actions button[type="button"] {
+    background: #e0e0e0;
+    color: #182848;
+}
+
+.form-actions button[type="button"]:hover {
+    background: #ccc;
+}
+
+/* New: Styles for image upload preview and label */
+.hidden-file-input {
+    display: none;
+}
+
+.custom-file-label {
+    display: block;
+    padding: 12px;
+    border: 2px dashed #4b6cb7;
+    border-radius: 10px;
+    background: #f5f7ff;
+    text-align: center;
+    color: #555;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin-bottom: 15px;
+}
+
+.custom-file-label:hover {
+    border-color: #182848;
+    background: #eef2ff;
+    color: #182848;
+}
+
+.avatar-preview {
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+    border-radius: 50%;
+    margin-top: 10px;
+    border: 2px solid #ddd;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+.loading-state {
+    text-align: center;
+    font-size: 18px;
+    color: #182848;
+    margin-top: 50px;
+}

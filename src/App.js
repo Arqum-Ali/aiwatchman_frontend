@@ -1,5 +1,11 @@
 import React from "react";
-import { BrowserRouter, Routes, Route, NavLink, useLocation } from "react-router-dom";
+import {
+  BrowserRouter,
+  Routes,
+  Route,
+  NavLink,
+  useLocation,
+} from "react-router-dom";
 import Home from "./pages/home";
 import Users from "./pages/Users";
 import Signup from "./pages/Signup";
@@ -8,42 +14,66 @@ import Login from "./pages/Login";
 import KnownFaces from "./pages/KnowFaces";
 import UnknownFaces from "./pages/UnknowFaces";
 import Camera from "./pages/camera";
+import { rolePages, ROLES } from "./config/roles";
 
 import "./App.css";
 import ProtectedRoute from "./components/ProtectedRoute";
 
-
 function Navbar() {
+    const role = localStorage.getItem("user-role");
+
+    const pages = role ? rolePages[role] : [];
   return (
     <nav className="navbar">
       <div className="logo">AI WatchMan</div>
       <ul className="nav-links">
-        <li>
-          <NavLink to="/" className="nav-link" end>
-            Home
-          </NavLink>
-        </li>
-       
-        <li>
-          <NavLink to="/upload_image" className="nav-link">
-            Upload
-          </NavLink>
-        </li>
+        {pages.includes("/") && (
           <li>
-          <NavLink to="/known-faces" className="nav-link">
-            KnownFaces
-          </NavLink>
-        </li>
-         <li>
-          <NavLink to="/UnknownFaces" className="nav-link">
-            UnKnownFaces
-          </NavLink>
-        </li>
+            <NavLink to="/" className="nav-link" end>
+              Home
+            </NavLink>
+          </li>
+        )}
+
+        {pages.includes("/upload_image") && (
           <li>
-          <NavLink to="/Camera" className="nav-link">
-            Camera
-          </NavLink>
-        </li>
+            <NavLink to="/upload_image" className="nav-link">
+              Upload
+            </NavLink>
+          </li>
+        )}
+
+        {pages.includes("/known-faces") && (
+          <li>
+            <NavLink to="/known-faces" className="nav-link">
+              KnownFaces
+            </NavLink>
+          </li>
+        )}
+
+        {pages.includes("/UnknownFaces") && (
+          <li>
+            <NavLink to="/UnknownFaces" className="nav-link">
+              UnKnownFaces
+            </NavLink>
+          </li>
+        )}
+
+        {pages.includes("/Camera") && (
+          <li>
+            <NavLink to="/Camera" className="nav-link">
+              Camera
+            </NavLink>
+          </li>
+        )}
+
+        {pages.includes("/users") && (
+          <li>
+            <NavLink to="/users" className="nav-link">
+              User
+            </NavLink>
+          </li>
+        )}
       </ul>
     </nav>
   );
@@ -70,7 +100,9 @@ function App() {
           <Route
             path="/"
             element={
-              <ProtectedRoute>
+              <ProtectedRoute
+                allowedRoles={[ROLES.ADMIN, ROLES.OWNER, ROLES.VIEWER]}
+              >
                 <Home />
               </ProtectedRoute>
             }
@@ -78,7 +110,9 @@ function App() {
           <Route
             path="/users"
             element={
-              <ProtectedRoute>
+              <ProtectedRoute
+                allowedRoles={[ROLES.ADMIN, ROLES.OWNER, ROLES.VIEWER]}
+              >
                 <Users />
               </ProtectedRoute>
             }
@@ -88,7 +122,9 @@ function App() {
           <Route
             path="/upload_image"
             element={
-              <ProtectedRoute>
+              <ProtectedRoute
+                allowedRoles={[ROLES.ADMIN, ROLES.OWNER, ROLES.VIEWER]}
+              >
                 <UploadReferences />
               </ProtectedRoute>
             }
@@ -96,7 +132,9 @@ function App() {
           <Route
             path="/known-faces"
             element={
-              <ProtectedRoute>
+              <ProtectedRoute
+                allowedRoles={[ROLES.ADMIN, ROLES.OWNER]}
+              >
                 <KnownFaces />
               </ProtectedRoute>
             }
@@ -104,7 +142,9 @@ function App() {
           <Route
             path="/UnknownFaces"
             element={
-              <ProtectedRoute>
+              <ProtectedRoute
+                allowedRoles={[ROLES.ADMIN, ROLES.OWNER]}
+              >
                 <UnknownFaces />
               </ProtectedRoute>
             }
@@ -112,7 +152,9 @@ function App() {
           <Route
             path="/Camera"
             element={
-              <ProtectedRoute>
+              <ProtectedRoute
+                allowedRoles={[ROLES.ADMIN, ROLES.OWNER, ROLES.VIEWER]}
+              >
                 <Camera />
               </ProtectedRoute>
             }
