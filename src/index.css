@@ -15,4 +15,154 @@ body {
 }
 
 
+/* Add Collaborator button */
+.add-collaborator-btn {
+  background-color: #22c55e;
+  /* green-500 */
+  color: #fff;
+  padding: 0.5rem 1rem;
+  border-radius: 6px;
+  border: none;
+  cursor: pointer;
+  font-weight: 500;
+  transition: background 0.2s ease;
+}
 
+.add-collaborator-btn:hover {
+  background-color: #16a34a;
+  /* green-600 */
+}
+
+/* Invites heading */
+.invites-heading {
+  margin-top: 1.5rem;
+  font-size: 1.25rem;
+  font-weight: 600;
+}
+
+/* Empty state */
+.invites-empty {
+  margin-top: 0.5rem;
+  color: #4b5563;
+  /* gray-600 */
+  font-size: 0.95rem;
+}
+
+/* Invite list */
+.invite-list {
+  margin-top: 1rem;
+  list-style: none;
+  padding: 0;
+}
+
+.invite-item {
+  border: 1px solid #d1d5db;
+  /* gray-300 */
+  padding: 0.75rem;
+  border-radius: 6px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.invite-item span {
+  font-weight: 600;
+}
+
+.invite-item small {
+  color: #6b7280;
+  /* gray-500 */
+  font-size: 0.8rem;
+}
+
+/* Remove button */
+.remove-btn {
+  background-color: #ef4444;
+  /* red-500 */
+  color: #fff;
+  padding: 0.25rem 0.75rem;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 0.85rem;
+  transition: background 0.2s ease;
+}
+
+.remove-btn:hover {
+  background-color: #dc2626;
+  /* red-600 */
+}
+
+/* Popup overlay */
+.popup-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 50;
+}
+
+/* Popup box */
+.popup-box {
+  background: #fff;
+  padding: 1.5rem;
+  border-radius: 8px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+  width: 380px;
+  max-width: 90%;
+}
+
+.popup-box h2 {
+  font-size: 1.2rem;
+  font-weight: bold;
+  margin-bottom: 1rem;
+}
+
+/* Input and select */
+.popup-box input,
+.popup-box select {
+  width: 100%;
+  border: 1px solid #d1d5db;
+  padding: 0.5rem;
+  border-radius: 4px;
+  margin-bottom: 0.75rem;
+  font-size: 0.95rem;
+}
+
+.popup-box input:focus,
+.popup-box select:focus {
+  border-color: #3b82f6;
+  /* blue-500 */
+  outline: none;
+}
+
+/* Buttons */
+.popup-btn {
+  background: #3b82f6;
+  /* blue-500 */
+  color: #fff;
+  padding: 0.5rem 1rem;
+  border-radius: 6px;
+  border: none;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.popup-btn:hover {
+  background: #2563eb;
+  /* blue-600 */
+}
+
+.cancel-btn {
+  margin-left: 0.5rem;
+  background: #e5e7eb;
+  /* gray-300 */
+  color: #111827;
+}
+
+.cancel-btn:hover {
+  background: #d1d5db;
+  /* gray-400 */
+}

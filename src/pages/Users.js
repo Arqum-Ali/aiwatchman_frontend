@@ -250,30 +250,24 @@ useEffect(() => {
         </div>
         <button
           onClick={() => setShowPopup(true)}
-          className="bg-green-500 text-white px-4 py-2 rounded"
+          className="add-collaborator-btn"
         >
           Add Collaborator
         </button>
 
         {showPopup && <AddCollaboratorPopup onClose={handleClosePopup} />}
 
-        <h2 className="mt-6 text-xl font-semibold">Invites</h2>
+        <h2 className="invites-heading">Invites</h2>
         {invites.length === 0 ? (
-          <p className="text-gray-600 mt-2">No collaborators added yet.</p>
+          <p className="invites-empty">No collaborators added yet.</p>
         ) : (
-          <ul className="mt-4 space-y-2">
+          <ul className="invite-list">
             {invites.map((inv, i) => (
-              <li
-                key={i}
-                className="border p-3 rounded flex justify-between items-center"
-              >
+              <li key={i} className="invite-item">
                 <div>
-                  <span className="font-semibold">{inv.email}</span> —{" "}
-                  <span className="capitalize">{inv.role}</span>
+                  <span>{inv.email}</span> — <span>{inv.role}</span>
                   <br />
-                  <small className="text-gray-500">
-                    Added by: {inv.addedBy}
-                  </small>
+                  <small>Added by: {inv.addedBy}</small>
                 </div>
                 <button
                   onClick={() => {
@@ -281,7 +275,7 @@ useEffect(() => {
                     setInvites(updated);
                     localStorage.setItem("invites", JSON.stringify(updated));
                   }}
-                  className="bg-red-500 text-white px-3 py-1 rounded"
+                  className="remove-btn"
                 >
                   Remove
                 </button>

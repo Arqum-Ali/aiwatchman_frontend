@@ -45,10 +45,9 @@ const AddCollaboratorPopup = ({ onClose }) => {
   };
 
   return (
-    <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
-      <div className="bg-white p-6 rounded shadow-md w-96">
-        <h2 className="text-lg font-bold mb-4">Add Collaborator</h2>
-
+    <div className="popup-overlay">
+      <div className="popup-box">
+        <h2>Add Collaborator</h2>
         <input
           type="email"
           placeholder="Enter email"
@@ -66,17 +65,16 @@ const AddCollaboratorPopup = ({ onClose }) => {
           <option value={ROLES.OWNER}>Owner</option>
           <option value={ROLES.VIEWER}>Viewer</option>
         </select>
-
         <button
           onClick={handleSendInvite}
-          className="bg-blue-500 text-white px-4 py-2 rounded"
+          className="popup-btn"
           disabled={loading}
         >
           {loading ? "Sending..." : "Send Invite"}
         </button>
         <button
           onClick={onClose}
-          className="ml-2 bg-gray-300 px-4 py-2 rounded"
+          className="popup-btn cancel-btn"
           disabled={loading}
         >
           Cancel
